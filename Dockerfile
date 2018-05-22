@@ -26,7 +26,8 @@ RUN \
 VOLUME ["/etc/nginx/conf.d", "/var/log/nginx", "/var/www/web", "/opt/"]
 ADD ./bin/entrypoint.sh /opt/entrypoint.sh
 ADD ./bin/run.sh /opt/run.sh
-RUN chmod +x /opt/run.sh /opt/entrypoint.sh
+RUN chmod +x /opt/run.sh 
+RUN chmod +x /opt/entrypoint.sh
 RUN rm -rf /etc/nginx/sites-enabled/*
 
 RUN rm /etc/localtime
@@ -54,5 +55,5 @@ RUN cd /php-rdkafka/ && \
     make install
 
 EXPOSE 80
-ENTRYPOINT /opt/entrypoint.sh
+ENTRYPOINT ["/opt/entrypoint.sh"]
 CMD ["/opt/run.sh"]
